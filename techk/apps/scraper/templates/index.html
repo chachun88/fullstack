@@ -1,20 +1,4 @@
-<script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
-<script>
-  $("#init_scrapping").click(function () {
-    $.ajax({
-      url: '/scraper/ajax',
-      dataType: 'json',
-      success: function (html) {
-        if (html) {
-            $("div#categories").html(html);
-        }
-      }
-    });
-
-  });
-</script>
 <button id="init_scrapping">Scrapear</button>
 <div id="categories"></div>
+{% load static %}
+<script src="{% static "main.js" %}"></script>
