@@ -11,14 +11,6 @@ class App extends React.Component {
       postContent: []
     };
   }
-  componentDidMount() {
-    axios.get('/scraper/ajax')
-      .then(response => {
-        this.setState({
-          postContent: response.data
-        })
-    })
-  }
   filterCaseInsensitive = (filter, row) => {
     const id = filter.pivotId || filter.id;
     const content = row[id];
@@ -34,9 +26,21 @@ class App extends React.Component {
     return true;
   };
 
+  alertMe(e) {
+    e.preventDefault();
+    axios.get('/scraper/ajax')
+      .then(response => {
+        this.setState({
+          postContent: response.data
+        })
+    })
+    alert("i have been clicked!");
+  }
+
   render() {
     return (
       <div>
+        <button id="init_scrapping" onClick={this.alertMe.bind(this)}>Scrapear</button>
         <ReactTable
           data={this.state.postContent}
           columns={[
@@ -55,6 +59,7 @@ class App extends React.Component {
           className="-striped -highlight"
           filterable
           defaultFilterMethod={this.filterCaseInsensitive}
+          pivotBy={["name"]}
         />
       </div>
     );

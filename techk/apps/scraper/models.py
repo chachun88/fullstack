@@ -5,7 +5,7 @@ from django.db import models
 
 # Create your models here.
 class Category(models.Model):
-     name = models.CharField(max_length=250)
+  name = models.CharField(max_length=250, unique=True)
 
 class Book(models.Model):
      book = models.ForeignKey(Category, on_delete=models.CASCADE)
