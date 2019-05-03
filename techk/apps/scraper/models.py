@@ -18,7 +18,7 @@ class Book(models.Model):
 
 class ExtraInformation(models.Model):
      extra_information = models.ForeignKey(Book, on_delete=models.CASCADE)
-     upc = models.CharField(max_length=250)
+     upc = models.CharField(max_length=250, unique=True)
      product_type = models.CharField(max_length=250)
      price = models.DecimalField(max_digits=5, decimal_places=2)
      price_with_tax = models.DecimalField(max_digits=5, decimal_places=2)
