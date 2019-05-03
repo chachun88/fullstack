@@ -6,10 +6,6 @@ from django.db import models
 # Create your models here.
 class Category(models.Model):
 
-  class Meta:
-    app_label = 'apps.scraper'
-    abstract = True
-
   name = models.CharField(max_length=250, unique=True)
 
 class Book(models.Model):
