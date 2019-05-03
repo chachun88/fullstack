@@ -39,7 +39,10 @@ def get_book(url, thumbnail_link, category_id):
     soup = BeautifulSoup(r.text, 'html.parser')
     name = soup.select_one(PRODUCT_NAME).get_text()
     price = soup.select_one(PRODUCT_PRICE).get_text()[2:]
-    description = soup.select_one(PRODUCT_DESCRIPTION_SECTION).find_next("p").get_text()
+    try:
+        description = soup.select_one(PRODUCT_DESCRIPTION_SECTION).find_next("p").get_text()
+    except:
+        description = ''
 
     # get extra information for book
     filas = soup.select(PRODUCT_EXTRA_INFORMATION)
