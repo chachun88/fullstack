@@ -9,7 +9,7 @@ class Category(models.Model):
   name = models.CharField(max_length=250, unique=True)
 
 class Book(models.Model):
-     book = models.ForeignKey(Category, on_delete=models.CASCADE)
+     category = models.ForeignKey(Category, on_delete=models.CASCADE)
      name = models.CharField(max_length=250)
      price = models.DecimalField(max_digits=5, decimal_places=2)
      in_stock = models.IntegerField()
@@ -17,7 +17,7 @@ class Book(models.Model):
      description = models.CharField(max_length=2500)
 
 class ExtraInformation(models.Model):
-     extra_information = models.ForeignKey(Book, on_delete=models.CASCADE)
+     book = models.ForeignKey(Book, on_delete=models.CASCADE)
      upc = models.CharField(max_length=250, unique=True)
      product_type = models.CharField(max_length=250)
      price = models.DecimalField(max_digits=5, decimal_places=2)
