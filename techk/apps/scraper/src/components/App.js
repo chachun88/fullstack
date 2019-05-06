@@ -14,6 +14,7 @@ class App extends React.Component {
   filterCaseInsensitive = (filter, row) => {
     const id = filter.pivotId || filter.id;
     const content = row[id];
+    console.log(row.subRows);
     if (typeof content !== 'undefined') {
         // filter by text in the table or if it's a object, filter by key
         if (typeof content === 'object' && content !== null && content.key) {
@@ -52,14 +53,27 @@ class App extends React.Component {
             {
               Header: "Name",
               accessor: "name",
-              maxWidth: 200
-            }
+              maxWidth: 200,
+            },
+            {
+              Header: "Book",
+              accessor: (d) => d.book,
+              maxWidth: 100,
+              Cell: (props) => <span>{console.log(props)}</span>,
+            },
           ]}
           defaultPageSize={10}
           className="-striped -highlight"
           filterable
           defaultFilterMethod={this.filterCaseInsensitive}
-          pivotBy={["name"]}
+          pivotBy={["id"]}
+          SubComponent={row => {
+            return (
+              <div>
+                subcomponent
+              </div>
+            )
+          }}
         />
       </div>
     );

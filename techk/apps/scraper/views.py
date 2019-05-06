@@ -5,17 +5,18 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from django.http import JsonResponse
-from django.forms.models import model_to_dict
 from django.db import models
+from .serializers import CategorySerializer, BookSerializer
 
 from .usecases import scrapy
-from .models import Category
+from .models import Category, Book
 
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
 
 def ajax(request):
-    scrapy()
-    categories = list(Category.objects.values())
-    return JsonResponse(categories, safe=False)
+    #scrapy()
+    book = Category.objects.all()
+    serializer = CategorySerializer(book, many=True)
+    return JsonResponse(serializer.data, safe=False)

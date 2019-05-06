@@ -10,4 +10,4 @@ class CategorySerializer(serializers.ModelSerializer):
     book = BookSerializer(source="book_set", read_only=True, many=True)
     class Meta:
        model = Category
-       fields = ("name", "book",)
+       fields = ("id", "name", "book",)

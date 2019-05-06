@@ -33,6 +33,7 @@ def get_book_list(url, category_id):
         product_link = urljoin(url, pl.a["href"])
         thumbnail_link = urljoin(url, pl.img["src"])
         get_book(product_link, thumbnail_link, category_id)
+        break
 
 def get_book(url, thumbnail_link, category_id):
     r = requests.get(url)
